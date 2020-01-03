@@ -37,6 +37,17 @@ app.post('/products/add', cors(), (req, res) => {
     return res.send(`You add product successful`)
   })
 })
+
+app.delete('/products/delete/:product_id', cors(), (req, res) => {
+  const id = req.params.product_id
+  const DELETE_PRODUCT_QUERY = `DELETE FROM PRODUCTS WHERE PRODUCT_ID = ${id}`
+  connection.query(DELETE_PRODUCT_QUERY, (err, results) => {
+    if (err) return res.send(err)
+    console.log(results)
+    return res.send(`You delete product successful`)
+  })
+})
+
 app.get('/products', (req, res) => {
   connection.query(SELECT_ALL_PRODUCTS_QUERY, (err, results) => {
     if (err) return res.send(err)
