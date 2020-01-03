@@ -21,9 +21,9 @@ const pool = mysql.createPool(CONNECTION_INFO) // If we use pool we can hold the
 app.use(cors())
 // app.options('*', cors());
 app.use(bodyParser.json())
-pool.connect(err => {
-  if (err) return err
-})
+// connection.connect(err => {
+//   if (err) return err
+// })
 
 app.get('/', (req, res) => {
   res.send('Hello World! I am awake')
