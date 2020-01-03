@@ -34,8 +34,7 @@ app.post('/products/add', cors(), (req, res) => {
   const INSERT_PRODUCTS_QUERY = `INSERT INTO PRODUCTS (NAME, PRICE) VALUE ('${name}', ${price})`
   pool.query(INSERT_PRODUCTS_QUERY, (err, results) => {
     if (err) return res.send(err)
-    console.log(results)
-    return res.send(`You add product successful`)
+    return res.send(results)
   })
 })
 
@@ -45,7 +44,7 @@ app.delete('/products/delete/:product_id', cors(), (req, res) => {
   pool.query(DELETE_PRODUCT_QUERY, (err, results) => {
     if (err) return res.send(err)
     console.log(results)
-    return res.send(`You delete product successful`)
+    return res.send(results)
   })
 })
 
