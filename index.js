@@ -43,7 +43,16 @@ app.delete('/products/delete/:product_id', cors(), (req, res) => {
   const DELETE_PRODUCT_QUERY = `DELETE FROM PRODUCTS WHERE PRODUCT_ID = ${id}`
   pool.query(DELETE_PRODUCT_QUERY, (err, results) => {
     if (err) return res.send(err)
-    console.log(results)
+    return res.send(results)
+  })
+})
+
+app.put('/products/put/:product_id', cors(), (req, res) => {
+  const id = req.params.product_id
+  const {name, price} = req.body
+  const PUT_PRODUCT_QUERY = `UPDATE PRODUCTS SET NAME = '${name}', PRICE = ${price} WHERE PRODUCT_ID = ${id}`
+  pool.query(PUT_PRODUCT_QUERY, (err, results) => {
+    if (err) return res.send(err)
     return res.send(results)
   })
 })
